@@ -8,6 +8,8 @@
 // алгоритм — обидва варіанти приймаються).
 package library
 
+import "sort"
+
 // Author представляє автора книги.
 //
 // TODO (Завдання 1): додайте/скоригуйте поля на свій розсуд —
@@ -41,7 +43,7 @@ type Library struct {
 //
 // TODO (Завдання 1): реалізуйте додавання b до l.Books.
 func (l *Library) AddBook(b Book) {
-	// TODO: ваш код тут
+	l.Books = append(l.Books, b)
 }
 
 // SortByYear сортує books за PublishedYear (за зростанням) на місці,
@@ -51,5 +53,7 @@ func (l *Library) AddBook(b Book) {
 // Підказка: sort.Slice(books, func(i, j int) bool { ... }) —
 // це вже частина стандартної бібліотеки Go, тому дозволена.
 func SortByYear(books []Book) {
-	// TODO: ваш код тут
+	sort.Slice(books, func(i, j int) bool {
+		return books[i].PublishedYear < books[j].PublishedYear
+	})
 }
